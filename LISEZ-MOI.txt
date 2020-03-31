@@ -1,0 +1,20 @@
+Qu’est-ce que je peux faire avec les jetons de session ? 
+Vous pouvez utiliser des jetons de session pour détourner des comptes (accéder à eux sans avoir leur mot de passe) temporairement, MAIS s’ils redémarrent leur jeu, leur jeton de session sera changé.
+Cette version du voleur ne prend en charge que Windows.Déso LINUX et MACOS
+Caractéristiques
+ - Pas de mise en cache locale
+ - Transfert via Discord webhook
+ - Vole tous les jetons de compte stockés
+ - Aucun module Python externe n’est nécessaire
+ - Soutien MultiMC
+ - Soutien multiplateforme
+Comment utiliser
+ 1. Créez un webhook sur votre serveur Discord. Je recommande la création d’un nouveau serveur.
+ 2. Changez la valeur variable ' WEBHOOK_URL' à votre URL de webhook Discord dans VOLEURTOKENLOCALMINECRAFT.py
+ 3. (obscurcir le code ou l’installer comme porte dérobé dans un autre script.Ou alors le renommer ou bref ...)
+ 4. Envoyez le script à votre victime et faites-la exécuter ! GG XD vous l'avez !
+Exigences sur la machine de la victime (malheureusement)
+- Python 3.x
+- module PIP 'discord_webhook', installé via 'python-m pip install discord_webhook'.
+Auteur :  - ALEXDIEU 
+           Merci à Webhook et python pour la faille XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
