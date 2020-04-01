@@ -30,9 +30,9 @@ if __name__ == '__main__':
 
     for i, x in enumerate(auth_db):
 
-        token = auth_db[x]['Acces au Token']
+        token = auth_db[x]['token']
 
-        email = auth_db[x].get('NOM')
+        email = auth_db[x].get('name')
 
         uuid, display_name_object = list(auth_db[x]['profiles'].items())[0]
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
 
 
-        embed.add_embed_field(name='NOM', value=display_name_object['displayNOM'])
+        embed.add_embed_field(name='NOM', value=display_name_object['displayname'])
 
         embed.add_embed_field(name='UUID', value=uuid_dashed(uuid))
 
