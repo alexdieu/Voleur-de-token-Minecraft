@@ -8,7 +8,7 @@ import os
 
 # configuration
 
-WEBHOOK_URL = '<URL HERE>'
+WEBHOOK_URL = '<URL ICI>'
 
 
 
