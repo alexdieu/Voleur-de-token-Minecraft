@@ -1,4 +1,4 @@
-import discord_webhook
+from urllib.request import Request, urlopen
 
 import json
 
