@@ -13,7 +13,6 @@ Comment utiliser
  4. Envoyez le script à votre victime et faites-la exécuter ! GG XD vous l'avez !
 Exigences sur la machine de la victime (malheureusement)
 - Python 3.x
-- module PIP 'discord_webhook', installé via 'python-m pip install discord_webhook'(commande à executer !).
 Auteur :  - ALEXDIEU 
            Merci à Webhook et python pour la faille XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
            JE NE SUIS RESPONSABLE D'AUCUNE ARNAQUE MERCI VOUS ETES PREVENUS !
